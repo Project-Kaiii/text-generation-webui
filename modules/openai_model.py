@@ -39,8 +39,7 @@ class OpenAIModel:
 
         return string
 
-    def generate(self, prompt, state, is_chat=False, callback=None):
-
+    def generate(self, prompt, state, is_stream=True, is_chat=True, callback=None):
         logger.info(f"Generating with prompt: {prompt}")
 
         if not is_chat:
@@ -48,6 +47,7 @@ class OpenAIModel:
                 deployment_id=self.deployment,
                 model=self.openai_model_name,
                 prompt=prompt,
+                stream=is_stream,
                 # stop=["\n"],
             )
             return completion.choices[0].text
@@ -58,6 +58,7 @@ class OpenAIModel:
                 model=self.openai_model_name,
                 # messages=prompt,
                 messages=[{"role": "user", "content": prompt}]
+                stream=is_stream,
             )
 
             output = chat_completion.choices[0].message.content
