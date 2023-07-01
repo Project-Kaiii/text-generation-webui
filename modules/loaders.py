@@ -64,7 +64,14 @@ loaders_and_params = {
         'max_seq_len',
         'compress_pos_emb',
         'exllama_HF_info',
-    ]
+    ],
+    'OpenAI': [
+        'openai_api_key',
+        'openai_model',
+        'openai_api_type',
+        'openai_api_base',
+        'openai_deployment',
+    ],
 }
 
 
